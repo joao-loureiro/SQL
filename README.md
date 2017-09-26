@@ -1,2 +1,2 @@
 # SQL
-SQL snippets/exercises
+SQL code snippets/exercises
