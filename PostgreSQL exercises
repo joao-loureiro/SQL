@@ -1,3 +1,5 @@
+I BASIC
+
 1. Selectspecific
 
 select distinct(name), membercost from cd.facilities
@@ -51,3 +53,67 @@ order by surname
 limit 10
 
 9. Union
+
+select surname from cd.members
+union
+select name from cd.facilities
+
+10. Agg
+
+select max(joindate) from cd.members
+
+11. Agg2
+
+select firstname, surname, joindate from cd.members
+order by joindate desc
+limit 1
+
+select firstname, surname, joindate
+	from cd.members
+	where joindate = 
+		(select max(joindate) 
+			from cd.members);
+
+II JOINS
+
+1. Simplejoin
+
+select starttime from cd.bookings
+join cd.members on cd.members.memid = cd.bookings.memid
+where cd.members.firstname = 'David' and cd.members.surname = 'Farrell'
+
+2. Simplejoin2
+
+select starttime as start, name from cd.bookings
+join cd.facilities on cd.bookings.facid=cd.facilities.facid
+where cd.bookings.starttime >= '2012-09-21' and cd.bookings.starttime < '2012-09-22' and cd.facilities.name like 'Tennis%'
+order by starttime
+
+3. Self
+
+select distinct a.firstname, a.surname from cd.members a
+join cd.members b on a.memid=b.recommendedby
+order by a.surname
+
+select distinct recs.firstname as firstname, recs.surname as surname
+	from 
+		cd.members mems
+		inner join cd.members recs
+			on recs.memid = mems.recommendedby
+order by surname, firstname;    
+
+4. Self2
+
+select a.firstname, a.surname, b.firstname, b.surname from cd.members a
+left join cd.members b on a.recommendedby = b.memid
+order by a.surname,a.firstname,b.surname,b.firstname
+
+5. Threejoin
+
+select distinct concat(firstname, ' ', surname) as member, cd.facilities.name from cd.members
+join cd.bookings on cd.members.memid = cd.bookings.memid
+join cd.facilities on cd.facilities.facid = cd.bookings.facid
+where cd.facilities.name like 'Tennis%'
+order by member
+
+
