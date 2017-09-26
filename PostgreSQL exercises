@@ -1,0 +1,53 @@
+1. Selectspecific
+
+select distinct(name), membercost from cd.facilities
+  
+2. Where
+
+select * from cd.facilities
+where membercost > 0
+
+3. Where2
+
+select facid, name, membercost, monthlymaintenance from cd.facilities
+where membercost > 0 AND membercost < (monthlymaintenance/50)
+
+4. Where3
+
+select * from cd.facilities
+where name like '%Tennis%'
+
+5. Where4
+
+select * from cd.facilities
+where NOT (facid <> 1 and facid <> 5)
+
+select *
+	from cd.facilities 
+	where 
+		facid in (1,5);    
+    
+6. Classify
+
+select name, case when monthlymaintenance > 100 then 'expensive'
+else 'cheap'
+End as cost
+from cd.facilities
+
+7. Date
+
+select memid, surname, firstname, joindate from cd.members
+where joindate > '2012-09-01 00:00:00'
+
+select memid, surname, firstname, joindate 
+	from cd.members
+	where joindate >= '2012-09-01';  
+  
+8. Unique
+
+select surname from cd.members
+group by surname
+order by surname
+limit 10
+
+9. Union
