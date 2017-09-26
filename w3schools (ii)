@@ -65,10 +65,212 @@
 			);
 			
 Operators			
-NOT NULL	    Ensures that a column cannot have a NULL value
-UNIQUE	      Ensures that a
-PRIMARY KEY	  
-FOREIGN KEY	  
-CHECK	        
-DEFAULT	      
-INDEX	        
+NOT NULL	Ensures that a column cannot have a NULL value
+UNIQUE	      	Ensures that a all values in a column are different
+PRIMARY KEY	A combination of a NOT NULL and UNIQUE  
+FOREIGN KEY	Uniquely ideintifies a row/record in another table 
+CHECK	       	Ensures all values in a column satisfies a specific condition 
+DEFAULT	   	Sets a default value for a column when no value is specified   
+INDEX	    	Used to create and retrieve data from the database very quickly    
+
+		1) NOT NULL
+	
+		CREATE TABLE Persons (
+			ID int NOT NULL,
+			LastName varchar(255) NOT NULL,
+			FirstName varchar(255) NOT NULL,
+			Age int
+		);
+
+		2) UNIQUE
+					
+			i. SQL Server / Oracle / MS Access:
+	
+			CREATE TABLE Persons (
+			    ID int NOT NULL UNIQUE,
+			    LastName varchar(255) NOT NULL,
+			    FirstName varchar(255),
+			    Age int
+			);
+			
+			ii. MySQL
+		
+			CREATE TABLE Persons (
+			    ID int NOT NULL,
+			    LastName varchar(255) NOT NULL,
+			    FirstName varchar(255),
+			    Age int,
+			    UNIQUE (ID)
+			);
+			
+			iii. MySQL /SQL Server / Oracle / MS Access
+	
+			CREATE TABLE Persons (
+			   ID int NOT NULL,
+			   LastName varchar(255) NOT NULL,
+			   FirstName varchar(255),
+			   Age int,
+			   CONSTRAINT UC_Person UNIQUE (ID, LastName)
+			);
+		
+		3) PRIMARY KEY
+		- PRIMARY KEY on CREATE TABLE		
+			i. MySQL:
+	
+				CREATE TABLE Persons (
+				    ID int NOT NULL,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int,
+				    PRIMARY KEY (ID)
+				);
+			
+			ii. SQL Server / Oracle / MS Access:
+		
+				CREATE TABLE Persons (
+				    ID int NOT NULL PRIMARY KEY,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int
+				);
+			
+			iii. MySQL / SQL Server / Oracle / MS Access:
+	
+				CREATE TABLE Persons (
+				    ID int NOT NULL,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int,
+				    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+				);
+				
+		- PRIMARY KEY on ALTER TABLE		
+			i. MySQL / SQL Server / Oracle / MS Access:
+	
+				ALTER TABLE Persons
+				ADD PRIMARY KEY (ID);
+			
+			ii. MySQL / SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Persons
+				ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+				
+		- DROP a PRIMARY KEY Constraint		
+			i. MySQL:
+	
+				ALTER TABLE Persons
+				DROP PRIMARY KEY;
+			
+			ii. SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Persons
+				DROP CONSTRAINT PK_Person;
+
+		4) FOREIGN KEY
+		- FOREIGN KEY on CREATE TABLE		
+			i. MySQL:
+	
+				CREATE TABLE Orders (
+				    OrderID int NOT NULL,
+				    OrderNumber int NOT NULL,
+				    PersonID int,
+				    PRIMARY KEY (OrderID),
+				    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+				);
+			
+			ii. SQL Server / Oracle / MS Access:
+		
+				CREATE TABLE Orders (
+				    OrderID int NOT NULL PRIMARY KEY,
+				    OrderNumber int NOT NULL,
+				    PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+				);
+			
+			iii. MySQL / SQL Server / Oracle / MS Access:
+	
+				CREATE TABLE Orders (
+				    OrderID int NOT NULL,
+				    OrderNumber int NOT NULL,
+				    PersonID int,
+				    PRIMARY KEY (OrderID),
+				    CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+				    REFERENCES Persons(PersonID)
+				);
+				
+		- FOREIGN KEY on ALTER TABLE		
+			i. MySQL / SQL Server / Oracle / MS Access:
+	
+				ALTER TABLE Orders
+				ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+			
+			ii. MySQL / SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Orders
+				ADD CONSTRAINT FK_PersonOrder
+				FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+				
+		- DROP a FOREIGN KEY Constraint		
+			i. MySQL:
+	
+				ALTER TABLE Orders
+				DROP FOREIGN KEY FK_PersonOrder;
+			
+			ii. SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Orders
+				DROP CONSTRAINT FK_PersonOrder;
+				
+				
+		4) CHECK
+		- CHECK on CREATE TABLE		
+			i. MySQL:
+	
+				CREATE TABLE Persons (
+				    ID int NOT NULL,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int,
+				    CHECK (Age>=18)
+				);
+			
+			ii. SQL Server / Oracle / MS Access:
+		
+				CREATE TABLE Persons (
+				    ID int NOT NULL,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int CHECK (Age>=18)
+				);
+			
+			iii. MySQL / SQL Server / Oracle / MS Access:
+	
+				CREATE TABLE Persons (
+				    ID int NOT NULL,
+				    LastName varchar(255) NOT NULL,
+				    FirstName varchar(255),
+				    Age int,
+				    City varchar(255),
+				    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Sandnes')
+				);
+				
+		- CHECK on ALTER TABLE		
+			i. MySQL / SQL Server / Oracle / MS Access:
+	
+				ALTER TABLE Persons
+				ADD CHECK (Age>=18);
+			
+			ii. MySQL / SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Persons
+				ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND City='Sandnes');
+				
+		- DROP a CHECK Constraint		
+			i. MySQL:
+	
+				ALTER TABLE Persons
+				DROP CONSTRAINT CHK_PersonAge;
+			
+			ii. SQL Server / Oracle / MS Access:
+			
+				ALTER TABLE Persons
+				DROP CHECK CHK_PersonAge;
