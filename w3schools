@@ -1,0 +1,485 @@
+	1. SQL Select Statement
+		a. Used to select data from a database
+		
+			SELECT column1, column2, …
+			FROM table_name;
+			
+			SELECT * FROM table_name;
+			
+			SELECT CustomerName, City FROM Customers;
+			
+      SELECT * FROM Customers;
+
+	2. SQL Select Distinct
+		a. Used to return only distinct values
+
+			SELECT DISTINCT column1, column2
+			FROM table_name;
+			
+			SELECT COUNT(DISTINCT column1)
+			FROM table_name;
+			
+			SELECT COUNT(*) AS column2
+			FROM (SELECT DISTINCT column1 FROM table_name);
+
+	3. SQL Clause
+		a. Used to extract only those records that fulfill a specified condition
+
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE condition;
+			
+			SELECT * FROM table_name
+			WHERE column1='_ _ _ _ _ ';
+			
+			SELECT * FROM table_name;
+	
+	OPERATORS
+	=	        Equal
+	<>	      Not equal
+	!=	      Not equal
+	>	        Greater than
+	<	        Less than
+	>=	      Greater than or equal
+	<=	      Greater than or equal
+	BETWEEN	  Between an inclusive range
+	LIKE	    Search for a pattern
+	IN	      To specify multiple possible values for a column
+
+			
+
+	4. SQL AND, OR and NOT Operators
+		a. Used to filter records based on more than one condition
+
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE condition1 AND condition2 AND condition3;
+			
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE condition1 OR condition2 OR condition3;
+			
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE NOT condition;
+			
+			SELECT * FROM table_name
+			WHERE column1='_ _ _ _ _' AND (column2 = '_ _ _ _ _' OR column3='_ _ _ _ _';
+			
+			SELECT * FROM table_name
+			WHERE NOT column1='_ _ _ _ _' AND NOT column2='_ _ _ _ _';
+			
+	5. SQL ORDER BY Keyword
+		a. Used to sort the records in ascending (by default) or descending order
+
+			SELECT column1, column2, …
+			FROM table_name
+			ORDER BY column 1, column2, … ASC|DESC;
+			
+			SELECT * FROM table_name
+			ORDER BY column1 ASC, column2 DESC;
+			
+	6. SQL INSERT INTO Statement
+		a. Used to insert new records in a table
+
+			INSERT INTO table_name (column1, column2, column3, …)
+			VALUES (value1, value2, value3);
+			
+			INSERT INTO table_name
+			VALUES (value1, value2, value3);
+
+	7. SQL NULL Value
+		a. Used to test for NULL values
+			i. Not possible to use comparison operators such as =, < or <>.
+			ii. Have to use IS or IS NOT
+
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE column1 IS NULL;
+			
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE column2 IS NOT NULL;
+			
+	8. SQL UPDATE Statement
+		a. Used to modify existing records in a table
+			i. Be careful when updating records: don't omit the WHERE clause
+
+			UPDATE table_name
+			SET column1 = value1, column2 = value2, …
+			WHERE condition;
+			
+	9. SQL DELETE Statement
+		a. Used to delete existing records in a table
+			i. Be careful when deleting records: don't omit the WHERE clause
+
+			
+			DELETE FROM table_name
+			WHERE condition
+			
+			DELETE FROM table_name
+			WHERE column1='_ _ _ _ _';
+			
+			DELETE FROM table_name;
+			
+			DELETE * FROM table_name;
+			
+	10. SQL SELECT TOP Clause (MS Access), LIMIT (My SQL), ROWNUM (Oracle)
+		a. Used to specify the number of records to return
+
+			SELECT TOP number|percent column1
+			FROM table_name
+			WHERE condition;
+			
+			SELECT TOP 3 * FROM table_name;
+			
+			SELECT TOP 50 PERCENT * FROM table_name;
+			
+			-------------------------------------------------------------
+			
+			SELECT * FROM table_name
+			LIMIT 3;
+			
+			-------------------------------------
+			
+			SELECT * FROM table_name
+			WHERE ROWNUM <= 3;
+			
+			SELECT * FROM table_name
+			WHERE column1 = '_ _ _ _ _' AND ROWNUM <= 3;
+			
+	11. SQL MIN() and MAX() Functions
+		a. Used to return the smallest and the largest value of the selected column
+
+			SELECT MIN(column_name)
+			FROM table_name
+			WHERE condition;
+			
+			SELECT MIN(column1) AS alias1
+			FROM table_name
+			
+			SELECT MAX(column_name)
+			FROM table_name
+			WHERE condition;
+			
+			SELECT MAX(column1) AS alias1
+			FROM table_name;
+			
+	12. SQL COUNT(), AVG() and SUM() Functions
+		a. Returs the number of rows that match a specific criteria, the average value of a numeric numbes and the total sum of a numeric column
+
+			SELECT COUNT (column1)
+			FROM table_name
+			WHERE condition;
+			
+			SELECT AVG (column1)
+			FROM table_name
+			WHERE condition;
+			
+			SELECT SUM(column1)
+			FROM table_name
+			WHERE condition;
+			
+	13. SQL LIKE Operator
+		a. Used in a WHERE clause to search for a specified pattern in a column
+
+			SELECT column1, column2, …
+			FROM table_name
+			WHERE column1 LIKE pattern;
+			
+			SELECT * FROM table_name
+			WHERE column1 LIKE 'a%';
+			
+			SELECT * FROM table_name
+			WHERE column1 LIKE 'a_%_%';
+			
+	OPERATORS
+	%	                          Zero, one or multiple characters
+	_	                          Single character
+	?	                          Single character (MS Access)
+	[charlist]                  Set of characters to match
+	[^charlist] or [!charlist]  Set of characters not to match
+  
+  
+
+	14. SQL Wildcard Characters
+		a. Used in conjunction with the LIKE operator in a WHERE clause to search for a specified pattern in a column
+
+	15. SQL IN Operator
+		a. Allows to specify multiple values in a WHERE clause
+
+			SELECT column1, column2
+			FROM table_name
+			WHERE column_name IN (value1, value2, …)
+			
+			SELECT column1, column2
+			FROM table_name
+			WHERE column1 IN (SELECT statement)
+			
+
+	16. SQL BETWEEN Operator
+		a. Selects values within a given range (numbers, text, dates)
+
+			SELECT column1, column2
+			FROM table_name
+			WHERE column1 BETWEEN value1 AND value2;
+			
+			SELECT * FROM table_name
+			WHERE column1 NOT BETWEEN value1 AND value2;
+			
+			SELECT * FROM table_name
+			WHERE (column1 BETWEEN value1 AND value2)
+			AND NOT column2 IN (value3, value4, value5);
+			
+			SELECT * FROM table_name
+			WHERE column1 BETWEEN '_ _ _ _ _' AND '_ _ _ _ _ _'
+			ORDER BY column1;
+			
+			SELECT * FROM table_name
+			WHERE column1 NOT BETWEEN '_ _ _ _ _' AND '_ _ _ _ _'
+			ORDER BY column1;
+			
+			SELECT * FROM table_name
+			WHERE column1 BETWEEN #07/04/1996# AND #07/09/1996#;
+			
+	17. SQL Aliases
+		a. Used to make column names more readable; only exist for the duration of the query
+
+			SELECT column_name AS alias_name
+			FROM table_name;
+			
+			SELECT column1 as alias1, column2 as alias2
+			FROM table_name;
+			
+			SELECT CustomerName, Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address
+			FROM Customers;
+			
+			'MySQL
+			SELECT CustomerName, CONCAT(Address,', ',PostalCode,', ',City,', ',Country) AS Address
+			FROM Customers;
+			
+			SELECT o.OrderID, o.OrderDate, c.CustomerName
+			FROM Customers AS c, Orders AS o
+			WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
+
+	18. SQL Join
+		a. Used to combine rows from two or more tables, based on a related column between them
+			§ INNER JOIN
+			
+			SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+			FROM Orders
+			INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+			
+			SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+			FROM ((Orders
+			INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+			INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+			
+			§ LEFT JOIN
+					
+			SELECT column_name(s)
+			FROM table1
+			LEFT JOIN table2 ON table1.column_name = table2.column_name;
+			
+			SELECT Customers.CustomerName, Orders.OrderID
+			FROM Customers
+			LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+			ORDER BY Customers.CustomerName;
+			
+			§ RIGHT JOIN
+					
+			SELECT column_name(s)
+			FROM table1
+			RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+			
+			SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+			FROM Orders
+			RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+			ORDER BY Orders.OrderID;
+			
+			§ FULL OUTER JOIN
+							
+			SELECT column_name(s)
+			FROM table1
+			FULL OUTER JOIN table2 ON table1.column_name = table2.column_name;
+			
+			SELECT Customers.CustomerName, Orders.OrderID
+			FROM Customers
+			FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+			ORDER BY Customers.CustomerName;
+				
+			§ SELF JOIN (creates matches using same table)
+
+			SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+			FROM Customers A, Customers B
+			WHERE A.CustomerID <> B.CustomerID
+			AND A.City = B.City 
+			ORDER BY A.City;
+
+			FROM Customers AS c, Orders AS o
+			WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
+
+	19. SQL UNION Operator (UNION ALL to allow for duplicate values)
+		a. Used to combine the result-set of two or more SELECT statements
+
+			SELECT column_name(s) FROM table1
+			UNION
+			SELECT column_name(s) FROM table2;
+			
+			SELECT column_name(s) FROM table1
+			UNION ALL
+			SELECT column_name(s) FROM table2;
+			
+			SELECT City, Country FROM Customers
+			WHERE Country='Germany'
+			UNION
+			SELECT City, Country FROM Suppliers
+			WHERE Country='Germany'
+			ORDER BY City;
+			
+	20.  SQL GROUP BY Statement
+		a. USED with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE condition
+			GROUP BY column_name(s)
+			ORDER BY column_name(s);
+			
+			SELECT COUNT(CustomerID), Country
+			FROM Customers
+			GROUP BY Country;
+			
+			SELECT COUNT(CustomerID), Country
+			FROM Customers
+			GROUP BY Country
+			ORDER BY COUNT(CustomerID) DESC;
+			
+			SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+			LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+			GROUP BY ShipperName;
+			
+			
+	21. SQL HAVING Clause
+		a. Added to SQL because WHERE could not be used with aggregate functions
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE condition
+			GROUP BY column_name(s)
+			HAVING condition
+			ORDER BY column_name(s);
+			
+			SELECT COUNT(CustomerID), Country
+			FROM Customers
+			GROUP BY Country
+			HAVING COUNT(CustomerID) > 5
+			ORDER BY COUNT(CustomerID) DESC;
+			
+			SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+			FROM (Orders
+			INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+			GROUP BY LastName
+			HAVING COUNT(Orders.OrderID) > 10;
+			
+			SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+			FROM Orders
+			INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+			WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+			GROUP BY LastName
+			HAVING COUNT(Orders.OrderID) > 25;
+			
+	22. SQL EXISTS Operator
+		a. Used to test for the existance of any record in a subquery
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE EXISTS
+			(SELECT column_name FROM table_name WHERE condition);
+			
+			SELECT SupplierName
+			FROM Suppliers
+			WHERE EXISTS (SELECT ProductName FROM Products WHERE SupplierId = Suppliers.supplierId AND Price < 20);
+			
+	23. SQL ANY Operator
+		a. Used with WHERE and HAVING clause, returns true if any of the subquery values meets the condition
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE column_name operator ANY
+			(SELECT column_name FROM table_name WHERE condition);
+			
+			SELECT ProductName
+			FROM Products
+			WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+			
+			SELECT ProductName
+			FROM Products
+			WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity > 99);
+			
+	24. SQL ALL Operator
+		a. Used with WHERE and HAVING clause, returns true if all of the subquery values meets the condition
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE column_name operator ALL
+			(SELECT column_name FROM table_name WHERE condition);
+			
+			SELECT ProductName
+			FROM Products
+			WHERE ProductID = ALL (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+
+	25. SQL SELECT INTO Statement
+		a. Copies data from on table into a new table
+
+			SELECT *
+			INTO newtable [IN externaldb]
+			FROM oldtable
+			WHERE condition;
+			
+			SELECT column1, column2, column3, ...
+			INTO newtable [IN externaldb]
+			FROM oldtable
+			WHERE condition;
+			
+			SELECT * INTO CustomersBackup2017
+			FROM Customers;
+			
+			SELECT * INTO CustomersGermany
+			FROM Customers
+			WHERE Country = 'Germany';
+			
+			SELECT Customers.CustomerName, Orders.OrderID
+			INTO CustomersOrderBackup2017
+			FROM Customers
+			LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+			
+			'Copies just the schema
+			SELECT * INTO newtable
+			FROM oldtable
+			WHERE 1 = 0;
+			
+	26. SQL INSERT INTO SELECT Statement
+		a. Copies all columns from one table to another table
+
+			INSERT INTO table2
+			SELECT * FROM table1
+			WHERE condition;
+			
+			INSERT INTO table2 (column1, column2, column3, ...)
+			SELECT column1, column2, column3, ...
+			FROM table1
+			WHERE condition;
+			
+			INSERT INTO Customers (CustomerName, City, Country)
+			SELECT SupplierName, City, Country FROM Suppliers
+			WHERE Country='Germany';
+
+	27. SQL Comments
+		a. Used to ignore lines
+
+			--	Single line
+			/*	Multi-line
+			*/
+
+
