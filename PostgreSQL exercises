@@ -116,4 +116,14 @@ join cd.facilities on cd.facilities.facid = cd.bookings.facid
 where cd.facilities.name like 'Tennis%'
 order by member
 
+6. Threejoin2
 
+select concat(firstname, ' ', surname) as member, name as facility, case when cd.members.memid=0 then slots*guestcost
+else slots*membercost end as cost from cd.members
+join cd.bookings on cd.members.memid = cd.bookings.memid
+join cd.facilities on cd.bookings.facid = cd.facilities.facid
+where starttime >= '2012-09-14' AND starttime < '2012-09-15' and ((cd.members.memid=0 and slots*guestcost > 30) OR 
+(cd.members.memid<>0 and slots*membercost > 30))
+order by cost desc
+
+7. Sub
